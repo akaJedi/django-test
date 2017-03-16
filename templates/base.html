@@ -1,14 +1,17 @@
 {% load staticfiles %}
 <html>
     <head>
-        <title>The Blog</title>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-	<link rel="stylesheet" href="{% static 'css/blog.css' %}">
-	<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <title>The Django based WebSite</title>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+		<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     </head>
 	<body>
 	    <div class="page-header">
+			{% if i in request.path %}
+    hello world!
+{% endif %}
 		{% if user.is_authenticated %}
         		<a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
 		        <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
@@ -16,7 +19,11 @@
 		{% else %}
 		        <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
 		{% endif %}
-	        <h1><a href="/">Blog</a></h1>
+	        <h2><a href="/">Website</a></h2>
+			<ul class="nav nav-pills">
+				<li role="presentation"><a href="/">Home</a></li>
+				<li role="presentation"><a href="/blog">Blog</a></li>
+			</ul>
 	    </div>
 	    <div class="content container">
 	        <div class="row">
